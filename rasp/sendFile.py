@@ -16,7 +16,7 @@ def send():
     #send file name
     today = datetime.date.today()
     yesterday = today - datetime.timedelta(1)
-    filename = (yesterday.strftime('%Y_%m_%d')) + '.csv'
+    filename = 'a\\' + (yesterday.strftime('%Y_%m_%d')) + '.csv'
     print(filename)
     s.send(filename.encode())
     
