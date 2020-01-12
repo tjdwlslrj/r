@@ -1,15 +1,20 @@
-import socket, os, time, csv
+import socket, os, time, csv, sys
+
+HOST = '192.168.35.131'
+PORT = 10001
 
 def getFileSize(filename):
     fileSize = os.path.getsize("data/"+filename)
     return str(fileSize)
 
 def send():
-    HOST = '192.168.35.131'
-    PORT = 10001
     #connect socket from server
     s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((HOST, PORT))
+    try:
+        s.connect((HOST, PORT))
+    except ConnectionRefusedError:
+        print("error")
+        sys.exit()
     print("connect")
     
     #get file name
@@ -55,4 +60,5 @@ def send():
     s.close()
 
 if __name__=="__main__":
-    send()
+    while True:
+        send()
